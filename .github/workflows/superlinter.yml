@@ -1,17 +1,18 @@
-name: Super-Linter
+name: Hello-World-and-DateTime
 
 on: push
 
 jobs:
-  super-lint:
-    name: Lint code base
+  hello-world-and-datetime:
+    name: Print Hello World and DateTime
     runs-on: self-hosted
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Run Super-Linter
-        uses: github/super-linter@v4
-        env:
-          DEFAULT_BRANCH: main
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Print Hello World
+        run: echo "Hello, World!"
+
+      - name: Print DateTime in IST
+        run: |
+          echo "Current DateTime (IST): $(TZ=Asia/Kolkata date '+%Y-%m-%d %H:%M:%S %A')"
