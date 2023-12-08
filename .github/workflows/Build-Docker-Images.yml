@@ -1,16 +1,15 @@
-name: Create-File-Action
+name: Build-Docker-Images
 
 on: push
 
 jobs:
-  create-file:
-    name: Create File on Self-Hosted Runner
+  build-docker-images:
+    name: Build Docker Images
     runs-on: self-hosted
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Create File
-        run: |
-          echo "HI this file is created and written by GitHub Actions CI/CD on self-hosted runner" > /home/ubuntu/githubaction
+      - name: Build Nginx Docker Image
+        run: docker build -t my-nginx-image ./nginx
