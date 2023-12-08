@@ -13,8 +13,8 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-# Expose port 80 to the outside world
-EXPOSE 80
+# Expose port 9090 to the outside world
+EXPOSE 9090
 
-# Define the command to run the application
-CMD ["npm", "start"]
+# Define the command to run the application and add echo command
+CMD ["sh", "-c", "npm start && echo 'Container successfully ran by Github Actions CI'"]
