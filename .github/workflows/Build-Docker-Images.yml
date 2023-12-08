@@ -12,4 +12,4 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build Nginx Docker Image
-        run: docker build -t my-nginx-image ./nginx
+        run: docker build -t my-nginx-image /home/ubuntu/nginx
