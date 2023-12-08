@@ -1,0 +1,23 @@
+name: Deploy to Container
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Docker
+      uses: docker/setup-docker@v2
+
+    - name: Build Docker image
+      run: docker build -t my-node-app .
+
+    - name: Deploy to Container
+      run: docker run -d -p 9090:80 --name my-container my-node-app
