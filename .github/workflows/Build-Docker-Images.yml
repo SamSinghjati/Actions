@@ -1,15 +1,23 @@
-name: Build-Docker-Images1
+name: Deploy to Container
 
-on: push
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  build-docker-images:
-    name: Build Docker Images
-    runs-on: self-hosted
+  build-and-deploy:
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Build Nginx Docker Image
-        run: docker build -t my-nginx-image /home/ubuntu/nginx
+    - name: Set up Docker
+      uses: docker/setup-docker@v2
+
+    - name: Build Docker image
+      run: docker build -t my-node-app .
+
+    - name: Deploy to Container
+      run: docker run -d -p 9090:80 --name my-container my-node-app
