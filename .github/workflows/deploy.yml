@@ -3,7 +3,7 @@ name: Build and Run Docker Container
 on:
   push:
     branches:
-      - main  # Change this to your default 
+      - main  # Change this to your defaulytt 
 
 jobs:
   build:
