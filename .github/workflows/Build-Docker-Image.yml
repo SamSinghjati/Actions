@@ -1,0 +1,20 @@
+name: Build Docker Image
+
+on: push
+
+jobs:
+  build-docker-image:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Docker
+      uses: docker/setup-docker@v2
+
+    - name: Build Docker image
+      run: docker build -t my-node-app:latest .
+
+    - name: Show Docker images
+      run: docker images
