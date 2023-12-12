@@ -1,19 +1,19 @@
-name: Build-and-Run-Container
-on: [push]
+name: Hello-World-and-DateTime
+
+on: push
 
 jobs:
-  build-and-run:
+  hello-world-and-datetime:
+    name: Print Hello World and DateTime
     runs-on: self-hosted
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-      #build the docker image
-    - name: Build Docker Image
-      run: docker build -t my-node-app .
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Run Docker Container
-      run: docker run -d -p 9090:80 --name my-container my-node-app
+      - name: Print Hello World
+        run: echo "Hello, World!"
 
-    - name: Show Container Logs
-      run: docker logs my-container
+      - name: Print DateTime in IST
+        run: |
+          echo "Current DateTime (IST): $(TZ=Asia/Kolkata date '+%Y-%m-%d %H:%M:%S %A')"
+
