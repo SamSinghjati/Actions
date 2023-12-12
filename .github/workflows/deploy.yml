@@ -1,23 +1,26 @@
-name: Deploy to Container
-#
+name: Build and Run Docker Container
+
 on:
   push:
     branches:
-      - main
+      - main  # Change this to your default branch
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: self-hosted
 
     steps:
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v2
 
     - name: Set up Docker
       uses: docker/setup-docker@v2
 
     - name: Build Docker image
-      run: docker build -t my-node-app .
+      run: docker build -t mynginx:latest /home/ubuntu/nginx
 
-    - name: Deploy to Container
-      run: docker run -d -p 9090:80 --name my-container my-node-app
+    - name: Run Docker container
+      run: docker run -d -p 80:80 mynginx:latest
+
+    # Add additional steps as needed, such as running tests or deploying.
+
